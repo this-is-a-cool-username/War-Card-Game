@@ -29,18 +29,26 @@ public class WarGame {
     }
 
     public void warGame() {
+        Scanner input = new Scanner(System.in);
         Cards c = new Cards();
-        System.out.println(c.playerHand);
+        //System.out.println(c.playerHand);
         System.out.println(c.computerHand);
-
-
-      while(c.computerHand.size() != 0 || c.playerHand.size() != 0);
+        System.out.println(c.computerHand.pop());
+        System.out.println(c.computerHand);
+        Collections.shuffle(c.computerHand);
+        System.out.println(c.computerHand);
+        Collections.shuffle(c.playerHand);
+      /*while(c.computerHand.size() != 0 || c.playerHand.size() != 0);
         {
+            if(c.playerHand.get(0) < c.computerHand.get(0)){
+                System.out.println("ok");
+            }
             System.out.println("Top player card is: " + c.playerHand.peek());
             System.out.println("Top computer card is: " + c.computerHand.peek());
+            String grab = input.next();
 
 
 
-        }
+        }*/
     }
 }
