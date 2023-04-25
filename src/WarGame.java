@@ -28,27 +28,162 @@ public class WarGame {
 
     }
 
-    public void warGame() {
+    public void warGame()throws EmptyStackException{
         Scanner input = new Scanner(System.in);
         Cards c = new Cards();
-        //System.out.println(c.playerHand);
-        System.out.println(c.computerHand);
-        System.out.println(c.computerHand.pop());
-        System.out.println(c.computerHand);
-        Collections.shuffle(c.computerHand);
+        System.out.println(c.playerHand);
         System.out.println(c.computerHand);
         Collections.shuffle(c.playerHand);
-      /*while(c.computerHand.size() != 0 || c.playerHand.size() != 0);
+
+        do{
+            try {
+                System.out.println("Players draw a card from your deck!");
+                System.out.println("Your card is: " + c.playerHand.peek());
+                System.out.println("Computers card is: " + c.computerHand.peek());
+                int cpuCard = c.computerHand.peek();
+                int userCard = c.playerHand.peek();
+                if (userCard < cpuCard) {
+                    int addCard = c.playerHand.pop();
+                    c.computerHand.push(addCard);
+                    System.out.println(c.computerHand);
+                    System.out.println(c.playerHand);
+                    Collections.shuffle(c.computerHand);
+                    System.out.println("Press any key to continue");
+                    input.next();
+                } else if (userCard > cpuCard) {
+                    int addCard = c.computerHand.pop();
+                    c.playerHand.push(addCard);
+                    System.out.println(c.computerHand);
+                    System.out.println(c.playerHand);
+                    Collections.shuffle(c.playerHand);
+                    System.out.println("Press any key to continue");
+                    input.next();
+
+
+                } else {
+                    System.out.println("It's a draw! Pull 3 cards and read the 4th.");
+                    int pCard1 = c.playerHand.pop();
+                    int pCard2 = c.playerHand.pop();
+                    int pCard3 = c.playerHand.pop();
+                    int pCard4 = c.playerHand.pop();
+                    int cCard1 = c.computerHand.pop();
+                    int cCard2 = c.computerHand.pop();
+                    int cCard3 = c.computerHand.pop();
+                    int cCard4 = c.computerHand.pop();
+                    cpuCard = c.computerHand.peek();
+                    userCard = c.playerHand.peek();
+                    System.out.println("Press any key to continue");
+                    input.next();
+                    if (cpuCard < userCard) {
+                        c.playerHand.push(pCard1);
+                        c.playerHand.push(pCard2);
+                        c.playerHand.push(pCard3);
+                        c.playerHand.push(pCard4);
+                        c.playerHand.push(cCard1);
+                        c.playerHand.push(cCard2);
+                        c.playerHand.push(cCard3);
+                        c.playerHand.push(cCard4);
+                        Collections.shuffle(c.playerHand);
+                    } else if (cpuCard > userCard) {
+                        c.computerHand.push(pCard1);
+                        c.computerHand.push(pCard2);
+                        c.computerHand.push(pCard3);
+                        c.computerHand.push(pCard4);
+                        c.computerHand.push(cCard1);
+                        c.computerHand.push(cCard2);
+                        c.computerHand.push(cCard3);
+                        c.computerHand.push(cCard4);
+                        Collections.shuffle(c.computerHand);
+                    } else {
+                        System.out.println("It's another draw! Pull 3 cards and read the 4th.");
+                        int pCard5 = c.playerHand.pop();
+                        int pCard6 = c.playerHand.pop();
+                        int pCard7 = c.playerHand.pop();
+                        int pCard8 = c.playerHand.pop();
+                        int cCard5 = c.computerHand.pop();
+                        int cCard6 = c.computerHand.pop();
+                        int cCard7 = c.computerHand.pop();
+                        int cCard8 = c.computerHand.pop();
+                        cpuCard = c.computerHand.peek();
+                        userCard = c.playerHand.peek();
+                        System.out.println("Press any key to continue");
+                        input.next();
+                        if (cpuCard < userCard) {
+                            c.playerHand.push(pCard1);
+                            c.playerHand.push(pCard2);
+                            c.playerHand.push(pCard3);
+                            c.playerHand.push(pCard4);
+                            c.playerHand.push(pCard5);
+                            c.playerHand.push(pCard6);
+                            c.playerHand.push(pCard7);
+                            c.playerHand.push(pCard8);
+                            c.playerHand.push(cCard1);
+                            c.playerHand.push(cCard2);
+                            c.playerHand.push(cCard3);
+                            c.playerHand.push(cCard4);
+                            c.playerHand.push(cCard5);
+                            c.playerHand.push(cCard6);
+                            c.playerHand.push(cCard7);
+                            c.playerHand.push(cCard8);
+                            Collections.shuffle(c.playerHand);
+                        } else if (cpuCard > userCard) {
+                            c.computerHand.push(pCard1);
+                            c.computerHand.push(pCard2);
+                            c.computerHand.push(pCard3);
+                            c.computerHand.push(pCard4);
+                            c.computerHand.push(pCard5);
+                            c.computerHand.push(pCard6);
+                            c.computerHand.push(pCard7);
+                            c.computerHand.push(pCard8);
+                            c.computerHand.push(cCard1);
+                            c.computerHand.push(cCard2);
+                            c.computerHand.push(cCard3);
+                            c.computerHand.push(cCard4);
+                            c.computerHand.push(cCard5);
+                            c.computerHand.push(cCard6);
+                            c.computerHand.push(cCard7);
+                            c.computerHand.push(cCard8);
+
+                            Collections.shuffle(c.computerHand);
+                        } else {
+
+                            System.out.println("Another draw?? Re-shuffling the deck...");
+                            c.playerHand.push(pCard1);
+                            c.playerHand.push(pCard2);
+                            c.playerHand.push(pCard3);
+                            c.playerHand.push(pCard4);
+                            c.playerHand.push(pCard5);
+                            c.playerHand.push(pCard6);
+                            c.playerHand.push(pCard7);
+                            c.playerHand.push(pCard8);
+                            c.computerHand.push(cCard1);
+                            c.computerHand.push(cCard2);
+                            c.computerHand.push(cCard3);
+                            c.computerHand.push(cCard4);
+                            c.computerHand.push(cCard5);
+                            c.computerHand.push(cCard6);
+                            c.computerHand.push(cCard7);
+                            c.computerHand.push(cCard8);
+
+                            Collections.shuffle(c.computerHand);
+                            Collections.shuffle(c.playerHand);
+                        }
+                    }
+                }//end of all else statements
+
+            }catch(Exception EmptyStackException){
+                break;}
+
+        }while(c.computerHand.size() != 0 || c.playerHand.size() != 0);
+        System.out.println("Good Game!");
+        if (c.computerHand.isEmpty())
         {
-            if(c.playerHand.get(0) < c.computerHand.get(0)){
-                System.out.println("ok");
-            }
-            System.out.println("Top player card is: " + c.playerHand.peek());
-            System.out.println("Top computer card is: " + c.computerHand.peek());
-            String grab = input.next();
-
-
-
-        }*/
+            System.out.println("You won!!");
+        }else if(c.playerHand.isEmpty()){
+            System.out.println("Sorry, you lost");
+            System.out.println("better luck next time.");
+        }
     }
+
 }
+
