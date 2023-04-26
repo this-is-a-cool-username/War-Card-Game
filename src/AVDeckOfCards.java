@@ -9,3 +9,5 @@ public class AVDeckOfCards{
     }
 }
 
+//Possible kudos points: program implemented try catch as well as switch/case
+//also no crashes

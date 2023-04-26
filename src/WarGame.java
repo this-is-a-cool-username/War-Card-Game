@@ -2,13 +2,11 @@ import java.util.*;
 
 public class WarGame {
 
-    void warRules() {
+    void warRules() {//this method lays out the rules for the game
         Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to War");
         System.out.println("You will be playing against the computer");
-        System.out.println("Press 's' to select the card at the top of your stack and play it");
-        System.out.println("Once the winner is determined, press 'c' to collect your cards");
         System.out.println("The player who holds the highest card value, ace being the highest, wins the round");
         System.out.println("If both cards are of equal value, both players draw 3 cards from the top of the deck and play a fourth");
         System.out.println("The player who has the highest card value wins all 10 cards, unless there is another draw.");
@@ -28,36 +26,75 @@ public class WarGame {
 
     }
 
-    public void warGame()throws EmptyStackException{
+    public void warGame(){ //This contains the code for the game itself
         Scanner input = new Scanner(System.in);
         Cards c = new Cards();
-        System.out.println(c.playerHand);
-        System.out.println(c.computerHand);
-        Collections.shuffle(c.playerHand);
-
+        String playGame;
         do{
             try {
                 System.out.println("Players draw a card from your deck!");
-                System.out.println("Your card is: " + c.playerHand.peek());
-                System.out.println("Computers card is: " + c.computerHand.peek());
+                int y = c.playerHand.peek();
+                int x= c.computerHand.peek();
+                int k = y + 1; //player
+                int z = x + 1; //computer
+                System.out.println(c.computerHand + " computer hand");
+                System.out.println(c.playerHand + " player hand");
+              if(x < 10 && y < 10) {
+                  System.out.println("Computers card is: " + z);
+                  System.out.println("Your card is: " + k);
+              }else{
+                  switch (y){
+                      case 11:
+                          System.out.println("Your card is the Queen");
+                          break;
+                      case 10:
+                          System.out.println("Your card is the Jack");
+                          break;
+                      case 12:
+                          System.out.println("Your card is the King");
+                          break;
+                      case 13:
+                          System.out.println("You have the ACE!");
+                          break;
+                      default:System.out.println("players card is: " + k);
+                          break;
+                  }switch(x){
+                      case 11:
+                          System.out.println("Computers card is the Queen");
+                          break;
+                      case 10:
+                          System.out.println("Computers card is the Jack");
+                          break;
+                      case 12:
+                          System.out.println("Computers card is the King");
+                          break;
+                      case 13:
+                          System.out.println("Computer has the ACE!");
+                          break;
+                      default:System.out.println("Computers card is: " + z);
+                          break;
+                  }
+                }
+
+
                 int cpuCard = c.computerHand.peek();
                 int userCard = c.playerHand.peek();
                 if (userCard < cpuCard) {
                     int addCard = c.playerHand.pop();
                     c.computerHand.push(addCard);
-                    System.out.println(c.computerHand);
-                    System.out.println(c.playerHand);
                     Collections.shuffle(c.computerHand);
                     System.out.println("Press any key to continue");
-                    input.next();
+                    System.out.println("Press 'r' to resign");
+                    playGame = input.next();
+
+
                 } else if (userCard > cpuCard) {
                     int addCard = c.computerHand.pop();
                     c.playerHand.push(addCard);
-                    System.out.println(c.computerHand);
-                    System.out.println(c.playerHand);
                     Collections.shuffle(c.playerHand);
                     System.out.println("Press any key to continue");
-                    input.next();
+                    System.out.println("Press 'r' to resign");
+                    playGame = input.next();
 
 
                 } else {
@@ -73,7 +110,8 @@ public class WarGame {
                     cpuCard = c.computerHand.peek();
                     userCard = c.playerHand.peek();
                     System.out.println("Press any key to continue");
-                    input.next();
+                    System.out.println("Press 'r' to resign");
+                    playGame = input.next();
                     if (cpuCard < userCard) {
                         c.playerHand.push(pCard1);
                         c.playerHand.push(pCard2);
@@ -107,7 +145,8 @@ public class WarGame {
                         cpuCard = c.computerHand.peek();
                         userCard = c.playerHand.peek();
                         System.out.println("Press any key to continue");
-                        input.next();
+                        System.out.println("Press 'r' to resign");
+                        playGame = input.next();
                         if (cpuCard < userCard) {
                             c.playerHand.push(pCard1);
                             c.playerHand.push(pCard2);
@@ -174,7 +213,7 @@ public class WarGame {
             }catch(Exception EmptyStackException){
                 break;}
 
-        }while(c.computerHand.size() != 0 || c.playerHand.size() != 0);
+        }while(!playGame.equals("r"));
         System.out.println("Good Game!");
         if (c.computerHand.isEmpty())
         {
