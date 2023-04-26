@@ -12,12 +12,13 @@ public class WarGame {
         System.out.println("The player who has the highest card value wins all 10 cards, unless there is another draw.");
         System.out.println("If there is another draw, then both players repeat the step where 3 cards are drawn");
         System.out.println("The player who runs out of cards first loses");
+        System.out.println("This is a fast paced game, you may want type rapidly to continue");
         System.out.println("Would you like to play?: ");
         System.out.println("Enter 'y' for yes, 'n' for no");
         String playGame = input.next();
         playGame.toLowerCase();
         if (playGame.equals("y")) {
-            warGame();
+            warGame(); //player continues on to game
         } else if (playGame.equals("n")) {
             System.out.println("Goodbye");
         } else {
@@ -30,6 +31,7 @@ public class WarGame {
         Scanner input = new Scanner(System.in);
         Cards c = new Cards();
         String playGame;
+        int i = -1;
         do{
             try {
                 System.out.println("Players draw a card from your deck!");
@@ -39,6 +41,7 @@ public class WarGame {
                 int z = x + 1; //computer
                 System.out.println(c.computerHand + " computer hand");
                 System.out.println(c.playerHand + " player hand");
+                i++;
               if(x < 10 && y < 10) {
                   System.out.println("Computers card is: " + z);
                   System.out.println("Your card is: " + k);
@@ -218,9 +221,11 @@ public class WarGame {
         if (c.computerHand.isEmpty())
         {
             System.out.println("You won!!");
+            System.out.println("the game lasted " + i + " rounds");
         }else if(c.playerHand.isEmpty()){
             System.out.println("Sorry, you lost");
             System.out.println("better luck next time.");
+            System.out.println("the game lasted " + i + " rounds");
         }
     }
 
